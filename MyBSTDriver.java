@@ -11,7 +11,7 @@ public class MyBSTDriver {
     /** The number of ints we will put in our collection */
     /** Reduce this number to debug. Set it to 1_000 to pass off. */
     
-    static int intSize = 1000;
+    static int intSize = 10;
   
     // Initialize the collections that will be tested
     // Chang the left-hand side to test other implementations of ICollection
@@ -194,6 +194,9 @@ public class MyBSTDriver {
   
       // Now remove all the values
       for (int i = 0; i < intSize; i++) {
+        if (countTests == 132){
+          System.out.println();
+        }
         expectTrue(collection.remove(i));
   
         // Check size and isEmpty

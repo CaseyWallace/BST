@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
@@ -57,9 +58,13 @@ public class MyBST<T extends Comparable<T>> implements ICollection<T> {
     //COMPLETE
     @Override
     public boolean remove(T item) {
-        removeHelper(root, item);
-        size--;
-        return true;
+        MyBSTNode<T> temp = removeHelper(root, item);
+        if (root.equals(temp)){
+            size--;
+            root = temp;
+            return true;
+        }
+        return false;
     }
 
     private MyBSTNode removeHelper(MyBSTNode root, T item) {
@@ -113,7 +118,7 @@ public class MyBST<T extends Comparable<T>> implements ICollection<T> {
         
     }
 
-    //TODO: Make this thing work.
+    //COMPLETE
     @Override
     public boolean contains(T item) {
         MyBSTNode hold = root;
@@ -124,7 +129,7 @@ public class MyBST<T extends Comparable<T>> implements ICollection<T> {
 
     @SuppressWarnings("NullPointerException")
     private boolean containsHelper(T item, MyBSTNode hold){
-        if (hold.item == null){
+        if (hold == null){
             return false;
         } else {
             int compare = item.compareTo((T) hold.item);
@@ -136,6 +141,19 @@ public class MyBST<T extends Comparable<T>> implements ICollection<T> {
                 return containsHelper(item, hold.lNode);
             }
 
+        }
+    }
+    public ArrayList toArrayList(){
+        ArrayList values = new ArrayList();
+        treeTravel(root, values);
+        return values;
+    }
+
+    private void treeTravel(MyBSTNode root, ArrayList values){
+        if (root != null){
+            treeTravel(root.lNode, values);
+            values.add(root.item);
+            treeTravel(root.rNode, values);
         }
     }
 }

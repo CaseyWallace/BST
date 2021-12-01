@@ -1,23 +1,23 @@
 import java.util.Iterator;
+import java.util.ArrayList;
 
-public class MyBSTIterator<T> implements Iterator<T>{
+public class MyBSTIterator<T extends Comparable <T>> implements Iterator<T>{
 
-  MyBST mbst;
-  int index = 0;
+  Iterator<T> it;
+  ArrayList<T> list;
 
   public MyBSTIterator(MyBST mbst){
-    this.mbst = mbst;
+    list = mbst.toArrayList();
   }
 
   @Override
   public boolean hasNext() {
-    return index < mbst.size();
+    return it.hasNext();
   }
 
-  @SuppressWarnings("unchecked")
   @Override
   public T next() {
-    return null;
+    return it.next();
   }
   
 }

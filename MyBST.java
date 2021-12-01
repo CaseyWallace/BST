@@ -58,13 +58,14 @@ public class MyBST<T extends Comparable<T>> implements ICollection<T> {
     //COMPLETE
     @Override
     public boolean remove(T item) {
-        MyBSTNode<T> temp = removeHelper(root, item);
-        if (root.equals(temp)){
+        if (contains(item)){
+            MyBSTNode<T> temp = removeHelper(root, item);
             size--;
             root = temp;
             return true;
+        } else {
+            return false;
         }
-        return false;
     }
 
     private MyBSTNode removeHelper(MyBSTNode root, T item) {
@@ -83,7 +84,7 @@ public class MyBST<T extends Comparable<T>> implements ICollection<T> {
                 if(temp == null){
                     return null;
                 } else {
-                    return root;
+                    return root.rNode;
                 }
             } else {
                 MyBSTNode child = childHelp(root);

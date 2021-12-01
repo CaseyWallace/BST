@@ -8,6 +8,7 @@ public class MyBSTIterator<T extends Comparable <T>> implements Iterator<T>{
 
   public MyBSTIterator(MyBST mbst){
     list = mbst.toArrayList();
+    it = list.iterator();
   }
 
   @Override
